@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:mysql://mysql57.rdsmzj8x6ih1js7.rds.gz.baidubce.com
+    username: rdsroot
+    password: 8567896fhx
+    driver-class-name: com.mysql.jdbc.Driver
