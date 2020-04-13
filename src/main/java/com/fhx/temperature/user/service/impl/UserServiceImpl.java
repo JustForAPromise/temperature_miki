@@ -14,19 +14,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public UserModel getVerifyCode(String userPhone, String userImsi) {
-        UserModel sendModel = new UserModel();
-        sendModel.setUserPhone(userPhone);
-        sendModel.setUserImsi(userImsi);
-
-        UserModel model = userRepository.findOne(sendModel);
-        if (model == null){
-            userRepository.save(sendModel);
-            model = userRepository.findOne(sendModel);
-        }
-
-        String verifyCode = StringUtil.getVerifyCode(6);
-        model.setVerifyCode(verifyCode);
-        return model;
+    public UserModel registerUser(UserModel userModel) {
+        return null;
     }
 }

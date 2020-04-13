@@ -4,11 +4,11 @@ import com.fhx.temperature.user.model.UserModel;
 
 public interface UserService {
 
+
     /**
-     * 获取登录验证码
-     * @param userPhone
-     * @param userImsi
+     * 用户注册
+     * @param userModel
      * @return
      */
-    UserModel getVerifyCode(String userPhone, String userImsi);
+    UserModel registerUser(UserModel userModel);
 }

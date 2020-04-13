@@ -4,6 +4,7 @@ import com.fhx.temperature.api.ApiResult;
 import com.fhx.temperature.user.api.UserLoginApiDo;
 import com.fhx.temperature.user.model.UserModel;
 import com.fhx.temperature.user.service.UserService;
+import com.fhx.temperature.util.ObjectUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @ApiOperation(httpMethod = "POST",value = "获取验证码", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @PostMapping(value = "/getVerifyCode", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes ={MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
-    public ApiResult getVerifyCode(@RequestBody @Validated UserLoginApiDo apiDo){
+    @ApiOperation(httpMethod = "POST",value = "注册", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/register", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes ={MediaType.APPLICATION_FORM_URLENCODED_VALUE,MediaType.APPLICATION_JSON_UTF8_VALUE})
+    public ApiResult register(@RequestBody @Validated UserLoginApiDo apiDo){
 
-        UserModel userModel = userService.getVerifyCode(apiDo.getUserPhone(), apiDo.getUserImsi());
+        UserModel userModel = ObjectUtil.map(apiDo, UserModel.class);
+
+       userModel =  userService.registerUser(userModel);
 
         return ApiResult.createSuccessResult("success", userModel);
     }
